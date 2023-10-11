@@ -23,29 +23,36 @@ def countOdNodes(head):
 
 
 # Delete middle node and returns head of the modified list
-def deleteMiddle(head):
+def deleteMiddle(head, count):
     current = head
+    currentIdx = 0
+    midIdx = count // 2
+
     if (current == None):
         return None
 
     if (current.next == None):
         del current
         return None
+    
+    while current is not None:
+        if (currentIdx == midIdx):
+            break
+
+        prev = current
+        current = current.next
+        currentIdx+=1
+    
+    prev.next = current.next
+
+    return head
+
 
     
 
-    count = countOdNodes(head)  # 1>2>3>4>5
+    
 
-    # find the middle node
-    mid = count // 2
-
-    while (mid > 1):
-        mid -= 1
-        current = current.next
-
-    current.next = current.next.next
-
-    return head
+    
 
 
 # Function to print the linked list
@@ -61,19 +68,20 @@ b = Node(2)
 c = Node(3)
 d = Node(4)
 e = Node(5)
-f = Node(6)
+#f = Node(6)
 
 a.next = b
 b.next = c
 c.next = d
 d.next = e
-e.next = f
+#e.next = f
 
 print("Original Linked List:")
 printLinkedList(a)
 
 # Delete the middle node
-new_head = deleteMiddle(a)
+count = countOdNodes(a) 
+new_head = deleteMiddle(a, count)
 
 print("Modified Linked List:")
 printLinkedList(new_head)

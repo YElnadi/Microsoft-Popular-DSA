@@ -86,3 +86,5 @@ new_head = deleteMiddle(a, count)
 print("Modified Linked List:")
 printLinkedList(new_head)
 
+print(Node(a))
+
